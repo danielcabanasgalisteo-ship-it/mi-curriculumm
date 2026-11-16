@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2B2B2B">
+  <title>Daniel Cabañas Galisteo — Currículum</title>
+  <style>
+    :root {
+      /* Blanco puro para el fondo general de la página. */
+      --color-fondo: #FFFFFF;
+      /* Gris carbón para la columna oscura, títulos y acentos principales. */
+      --color-carbon: #2B2B2B;
+      /* Gris muy claro para los bloques secundarios de la barra lateral. */
+      --color-gris-claro: #EAEAEA;
+      /* Gris medio para párrafos y texto secundario. */
+      --color-texto-secundario: #666666;
+      /* Blanco para el texto que aparece sobre fondos oscuros. */
+      --color-texto-oscuro: #FFFFFF;
+      /* Gris neutro claro para líneas y elementos de progreso vacíos. */
+      --color-progreso-vacio: #D8D8D8;
+
+      color-scheme: light;
+      font-family: "Montserrat", "Poppins", "Avenir Next", Avenir, Arial, sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--color-fondo);
+      color: var(--color-carbon);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .cv {
+      display: grid;
+      grid-template-columns: minmax(270px, 35%) minmax(0, 65%);
+      width: min(1120px, 100%);
+      min-height: 100vh;
+      margin: 0 auto;
+      background: var(--color-fondo);
+      box-shadow: 0 0 52px rgb(43 43 43 / 9%);
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px 0 20px 20px;
+    }
+
+    .profile {
+      position: relative;
+      z-index: 1;
+      padding: 37px 24px 0;
+      overflow: visible;
+      border-radius: 0 0 46% 46% / 0 0 9% 9%;
+      background: var(--color-carbon);
+      color: var(--color-texto-oscuro);
+      text-align: center;
+    }
+
+    .profile h1 {
+      margin: 0;
+      font-size: clamp(1.65rem, 3vw, 2.15rem);
+      font-weight: 850;
+      letter-spacing: 0.075em;
+      line-height: 1.16;
+      text-transform: uppercase;
+    }
+
+    .profile-role {
+      margin: 12px 0 0;
+      color: rgb(255 255 255 / 79%);
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+    }
+
+    .portrait-wrap {
+      position: relative;
+      z-index: 2;
+      width: 158px;
+      height: 158px;
+      margin: 27px auto -40px;
+      padding: 7px;
+      border: 7px solid var(--color-carbon);
+      border-radius: 50%;
+      background: var(--color-fondo);
+    }
+
+    .portrait {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .sidebar-block {
+      padding: 58px 25px 27px;
+      background: var(--color-gris-claro);
+    }
+
+    .sidebar-block + .sidebar-block {
+      position: relative;
+      flex: 1;
+      padding-top: 37px;
+      border-radius: 46% 46% 0 0 / 8% 8% 0 0;
+      background: var(--color-carbon);
+      color: var(--color-texto-oscuro);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 20px;
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .section-icon {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--color-carbon);
+      color: var(--color-texto-oscuro);
+    }
+
+    .section-icon svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.7;
+    }
+
+    .sidebar-block + .sidebar-block .section-icon,
+    .profile .section-icon {
+      background: var(--color-fondo);
+      color: var(--color-carbon);
+    }
+
+    .contact-list,
+    .plain-list,
+    .language-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-item {
+      display: grid;
+      grid-template-columns: 20px minmax(0, 1fr);
+      align-items: start;
+      gap: 10px;
+      overflow-wrap: anywhere;
+      font-size: 0.88rem;
+    }
+
+    .contact-item svg {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      fill: none;
+      stroke: var(--color-carbon);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.7;
+    }
+
+    .contact-item a {
+      color: inherit;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .education-entry + .education-entry {
+      margin-top: 22px;
+    }
+
+    .education-entry h3,
+    .other-entry h3 {
+      margin: 0;
+      font-size: 0.94rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .education-entry p,
+    .other-entry p {
+      margin: 6px 0 0;
+      color: rgb(255 255 255 / 75%);
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+
+    .main-content {
+      min-width: 0;
+      padding: 58px 52px 44px;
+    }
+
+    .main-content > section + section {
+      margin-top: 40px;
+    }
+
+    .intro-copy {
+      margin: 0;
+      color: var(--color-texto-secundario);
+      font-size: 1rem;
+    }
+
+    .experience-section {
+      padding: 28px 30px 32px;
+      border-top: 5px solid var(--color-carbon);
+      background: #F7F7F7;
+    }
+
+    .experience-section .section-heading {
+      margin-bottom: 27px;
+      font-size: 1.08rem;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .experience-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px 18px;
+      padding: 0 0 24px 24px;
+      border-left: 1px solid #BDBDBD;
+    }
+
+    .experience-item:last-child {
+      padding-bottom: 0;
+      border-left-color: transparent;
+    }
+
+    .experience-item::before {
+      position: absolute;
+      top: 8px;
+      left: -5px;
+      width: 9px;
+      height: 9px;
+      border: 2px solid var(--color-carbon);
+      border-radius: 50%;
+      background: var(--color-fondo);
+      content: "";
+    }
+
+    .experience-item h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 750;
+      line-height: 1.4;
+    }
+
+    .experience-company {
+      display: block;
+      margin-top: 3px;
+      color: var(--color-texto-secundario);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .experience-dates {
+      padding-top: 2px;
+      color: var(--color-texto-secundario);
+      font-size: 0.76rem;
+      text-align: right;
+    }
+
+    .experience-item p {
+      grid-column: 1 / -1;
+      margin: -5px 0 0;
+      color: var(--color-texto-secundario);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .details-grid > section {
+      min-width: 0;
+    }
+
+    .plain-list {
+      display: grid;
+      gap: 9px;
+      color: var(--color-texto-secundario);
+      font-size: 0.9rem;
+    }
+
+    .plain-list li,
+    .language-list li {
+      position: relative;
+      padding-left: 17px;
+    }
+
+    .plain-list li::before,
+    .language-list li::before {
+      position: absolute;
+      top: 0.66em;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-carbon);
+      content: "";
+    }
+
+    .language-list {
+      display: grid;
+      gap: 10px;
+      color: var(--color-texto-secundario);
+      font-size: 0.9rem;
+    }
+
+    .language-list strong {
+      color: var(--color-carbon);
+    }
+
+    .muted-note {
+      margin: 0;
+      color: var(--color-texto-secundario);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 760px) {
+      .cv {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sidebar {
+        gap: 16px;
+        padding: 14px 14px 0;
+      }
+
+      .profile {
+        padding: 30px 22px 0;
+        border-radius: 0 0 40% 40% / 0 0 7% 7%;
+      }
+
+      .profile h1 {
+        max-width: 440px;
+        margin: 0 auto;
+      }
+
+      .portrait-wrap {
+        width: 142px;
+        height: 142px;
+        margin-top: 22px;
+        margin-bottom: -35px;
+      }
+
+      .sidebar-block {
+        padding: 51px 23px 24px;
+      }
+
+      .sidebar-block + .sidebar-block {
+        padding: 32px 23px 26px;
+        border-radius: 34% 34% 0 0 / 5% 5% 0 0;
+      }
+
+      .main-content {
+        padding: 39px 24px 36px;
+      }
+
+      .main-content > section + section {
+        margin-top: 31px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+
+      .sidebar {
+        padding: 10px 10px 0;
+      }
+
+      .profile h1 {
+        font-size: 1.65rem;
+      }
+
+      .main-content {
+        padding: 32px 19px;
+      }
+
+      .experience-section {
+        padding: 23px 18px 26px;
+      }
+
+      .experience-item {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 4px;
+      }
+
+      .experience-dates {
+        text-align: left;
+      }
+
+      .experience-item p {
+        grid-column: 1;
+        margin-top: 4px;
+      }
+
+      .details-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 25px;
+      }
+    }
+
+    @media print {
+      .cv {
+        width: 100%;
+        box-shadow: none;
+      }
+
+      .main-content {
+        padding-top: 35px;
+      }
+
+      .experience-section {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv">
+    <aside class="sidebar" aria-label="Perfil y datos de contacto">
+      <header class="profile">
+        <h1>Daniel Cabañas Galisteo</h1>
+        <p class="profile-role">Estudiante de Trabajo Social</p>
+        <div class="portrait-wrap">
+          <img class="portrait" src="imagenes/foto.jpg" alt="Foto de Daniel Cabañas Galisteo">
+        </div>
+      </header>
+
+      <!-- ===== SECCIÓN: CONTACTO ===== -->
+      <section class="sidebar-block" aria-labelledby="contact-heading">
+        <h2 class="section-heading" id="contact-heading">
+          <span class="section-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 6.5h16v11H4z"/><path d="m4.5 7 7.5 6 7.5-6"/></svg>
+          </span>
+          Contacto
+        </h2>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a15 15 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2Z"/></svg>
+            <a href="tel:+34692993356">692 993 356</a>
+          </li>
+          <li class="contact-item">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6.5h16v11H4z"/><path d="m4.5 7 7.5 6 7.5-6"/></svg>
+            <a href="mailto:danicabanasgalisteo05@gmail.com">danicabanasgalisteo05@gmail.com</a>
+          </li>
+          <li class="contact-item">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.2"/></svg>
+            <span>Jerez de la Frontera, Cádiz</span>
+          </li>
+        </ul>
+      </section>
+      <!-- ===== FIN: CONTACTO ===== -->
+
+      <!-- ===== SECCIÓN: FORMACIÓN ===== -->
+      <section class="sidebar-block" aria-labelledby="education-heading">
+        <h2 class="section-heading" id="education-heading">
+          <span class="section-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m2.5 9 9.5-5 9.5 5-9.5 5-9.5-5Z"/><path d="M6.5 11.2v5c3.4 2.3 7.6 2.3 11 0v-5"/><path d="M21.5 9v6"/></svg>
+          </span>
+          Formación
+        </h2>
+        <div class="education-entry">
+          <h3>Trabajo Social</h3>
+          <p>Facultad de Ciencias del Trabajo, UCA<br>2023 – actualidad</p>
+        </div>
+        <div class="education-entry">
+          <h3>Curso no reglado de mozo de carga</h3>
+        </div>
+        <div class="education-entry">
+          <h3>Bachillerato de Ciencias Sociales</h3>
+          <p>I.E.S. Lola Flores<br>2017 – 2023</p>
+        </div>
+      </section>
+      <!-- ===== FIN: FORMACIÓN ===== -->
+    </aside>
+
+    <main class="main-content">
+      <!-- ===== SECCIÓN: EXPERIENCIA ===== -->
+      <section class="experience-section" aria-labelledby="experience-heading">
+        <h2 class="section-heading" id="experience-heading">
+          <span class="section-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3M3 12h18M10 12v2h4v-2"/></svg>
+          </span>
+          Experiencia
+        </h2>
+        <ul class="experience-list">
+          <li class="experience-item">
+            <div>
+              <h3>Mozo de carga</h3>
+              <span class="experience-company">Tío Pepe Festival</span>
+            </div>
+            <span class="experience-dates">Fechas no indicadas</span>
+            <p>Desempeño de tareas operativas y logísticas como mozo de carga en el evento Tío Pepe Festival.</p>
+          </li>
+          <li class="experience-item">
+            <div>
+              <h3>Camarero</h3>
+              <span class="experience-company">Heladería Soler</span>
+            </div>
+            <span class="experience-dates">Fechas no indicadas</span>
+            <p>Trabajo en el puesto de camarero en el establecimiento Heladería Soler.</p>
+          </li>
+          <li class="experience-item">
+            <div>
+              <h3>Vendedor deportivo</h3>
+              <span class="experience-company">Decathlon</span>
+            </div>
+            <span class="experience-dates">Fechas no indicadas</span>
+            <p>Desempeño del puesto de vendedor deportivo en la tienda Decathlon.</p>
+          </li>
+          <li class="experience-item">
+            <div>
+              <h3>Recepcionista</h3>
+              <span class="experience-company">Ilusiona Jerez (Bolera)</span>
+            </div>
+            <span class="experience-dates">Fechas no indicadas</span>
+            <p>Trabajo en recepción en el centro de ocio Ilusiona Jerez (Bolera).</p>
+          </li>
+        </ul>
+      </section>
+      <!-- ===== FIN: EXPERIENCIA ===== -->
+
+      <!-- ===== SECCIÓN: SOBRE MÍ ===== -->
+      <section aria-labelledby="about-heading">
+        <h2 class="section-heading" id="about-heading">
+          <span class="section-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>
+          </span>
+          Sobre mí
+        </h2>
+        <p class="intro-copy">Estudiante de Trabajo Social en la Facultad de Ciencias del Trabajo (UCA). Persona responsable y ordenada, con predisposición para el trabajo.</p>
+      </section>
+      <!-- ===== FIN: SOBRE MÍ ===== -->
+
+      <div class="details-grid">
+        <!-- ===== SECCIÓN: HABILIDADES ===== -->
+        <section aria-labelledby="skills-heading">
+          <h2 class="section-heading" id="skills-heading">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m12 3 2.3 5.1 5.6.6-4.2 3.8 1.2 5.5-4.9-2.8-4.9 2.8 1.2-5.5-4.2-3.8 5.6-.6L12 3Z"/></svg>
+            </span>
+            Habilidades
+          </h2>
+          <ul class="plain-list">
+            <li>Responsable</li>
+            <li>Ordenado</li>
+            <li>Predisposición para el trabajo</li>
+          </ul>
+        </section>
+        <!-- ===== FIN: HABILIDADES ===== -->
+
+        <!-- ===== SECCIÓN: IDIOMAS ===== -->
+        <section aria-labelledby="languages-heading">
+          <h2 class="section-heading" id="languages-heading">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </span>
+            Idiomas
+          </h2>
+          <ul class="language-list">
+            <li><strong>Español:</strong> nativo</li>
+            <li><strong>Inglés:</strong> nivel B2, Linguaskills (Cambridge)</li>
+            <li><strong>Italiano:</strong> nivel A2</li>
+          </ul>
+        </section>
+        <!-- ===== FIN: IDIOMAS ===== -->
+
+        <!-- ===== SECCIÓN: VOLUNTARIADO ===== -->
+        <section aria-labelledby="volunteer-heading">
+          <h2 class="section-heading" id="volunteer-heading">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20.5 8.5c0 5-8.5 11-8.5 11s-8.5-6-8.5-11a4.5 4.5 0 0 1 8.5-2 4.5 4.5 0 0 1 8.5 2Z"/></svg>
+            </span>
+            Voluntariado
+          </h2>
+          <p class="muted-note">No consta experiencia de voluntariado.</p>
+        </section>
+        <!-- ===== FIN: VOLUNTARIADO ===== -->
+
+        <!-- ===== SECCIÓN: OTROS ===== -->
+        <section aria-labelledby="other-heading">
+          <h2 class="section-heading" id="other-heading">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+            </span>
+            Otros
+          </h2>
+          <ul class="plain-list">
+            <li>Permiso de conducir tipo B</li>
+            <li>Carnet de manipulador de alimentos</li>
+          </ul>
+        </section>
+        <!-- ===== FIN: OTROS ===== -->
+      </div>
+    </main>
+  </div>
+</body>
+</html>
